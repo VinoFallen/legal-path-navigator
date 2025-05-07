@@ -1,0 +1,171 @@
+{
+    "parsed_data": {
+        "keywords": [
+            "land",
+            "paid",
+            "brother"
+        ],
+        "case_type": "Civil - Property Dispute"
+    },
+    "graph_data": {
+        "case_type": "Civil - Property Dispute",
+        "graphs": {
+            "low_cost": {
+                "nodes": [
+                    "File Complaint",
+                    "Land Survey",
+                    "Community Mediation",
+                    "Court Hearing",
+                    "Judgment"
+                ],
+                "edges": [
+                    {
+                        "from": "File Complaint",
+                        "to": "Land Survey",
+                        "time_days": 15,
+                        "cost_rupees": 4000,
+                        "risk_level": "medium"
+                    },
+                    {
+                        "from": "Land Survey",
+                        "to": "Community Mediation",
+                        "time_days": 10,
+                        "cost_rupees": 3000,
+                        "risk_level": "high"
+                    },
+                    {
+                        "from": "Community Mediation",
+                        "to": "Court Hearing",
+                        "time_days": 25,
+                        "cost_rupees": 6000,
+                        "risk_level": "medium"
+                    },
+                    {
+                        "from": "Court Hearing",
+                        "to": "Judgment",
+                        "time_days": 60,
+                        "cost_rupees": 8000,
+                        "risk_level": "low"
+                    }
+                ]
+            },
+            "fast_resolution": {
+                "nodes": [
+                    "File Complaint",
+                    "Emergency Injunction",
+                    "Expedited Hearing",
+                    "Judgment"
+                ],
+                "edges": [
+                    {
+                        "from": "File Complaint",
+                        "to": "Emergency Injunction",
+                        "time_days": 3,
+                        "cost_rupees": 15000,
+                        "risk_level": "high"
+                    },
+                    {
+                        "from": "Emergency Injunction",
+                        "to": "Expedited Hearing",
+                        "time_days": 7,
+                        "cost_rupees": 20000,
+                        "risk_level": "medium"
+                    },
+                    {
+                        "from": "Expedited Hearing",
+                        "to": "Judgment",
+                        "time_days": 10,
+                        "cost_rupees": 25000,
+                        "risk_level": "medium"
+                    }
+                ]
+            },
+            "high_efficiency": {
+                "nodes": [
+                    "File Complaint",
+                    "Preliminary Hearing",
+                    "Mediation",
+                    "Final Hearing",
+                    "Judgment"
+                ],
+                "edges": [
+                    {
+                        "from": "File Complaint",
+                        "to": "Preliminary Hearing",
+                        "time_days": 10,
+                        "cost_rupees": 8000,
+                        "risk_level": "medium"
+                    },
+                    {
+                        "from": "Preliminary Hearing",
+                        "to": "Mediation",
+                        "time_days": 7,
+                        "cost_rupees": 5000,
+                        "risk_level": "low"
+                    },
+                    {
+                        "from": "Mediation",
+                        "to": "Final Hearing",
+                        "time_days": 14,
+                        "cost_rupees": 10000,
+                        "risk_level": "medium"
+                    },
+                    {
+                        "from": "Final Hearing",
+                        "to": "Judgment",
+                        "time_days": 21,
+                        "cost_rupees": 12000,
+                        "risk_level": "low"
+                    }
+                ]
+            },
+            "low_risk": {
+                "nodes": [
+                    "File Complaint",
+                    "Legal Notice",
+                    "Surveyor Report",
+                    "Expert Evaluation",
+                    "Court Hearing",
+                    "Judgment"
+                ],
+                "edges": [
+                    {
+                        "from": "File Complaint",
+                        "to": "Legal Notice",
+                        "time_days": 7,
+                        "cost_rupees": 5000,
+                        "risk_level": "low"
+                    },
+                    {
+                        "from": "Legal Notice",
+                        "to": "Surveyor Report",
+                        "time_days": 14,
+                        "cost_rupees": 10000,
+                        "risk_level": "low"
+                    },
+                    {
+                        "from": "Surveyor Report",
+                        "to": "Expert Evaluation",
+                        "time_days": 21,
+                        "cost_rupees": 15000,
+                        "risk_level": "low"
+                    },
+                    {
+                        "from": "Expert Evaluation",
+                        "to": "Court Hearing",
+                        "time_days": 28,
+                        "cost_rupees": 20000,
+                        "risk_level": "low"
+                    },
+                    {
+                        "from": "Court Hearing",
+                        "to": "Judgment",
+                        "time_days": 35,
+                        "cost_rupees": 25000,
+                        "risk_level": "low"
+                    }
+                ]
+            }
+        }
+    }
+}

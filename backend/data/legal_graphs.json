@@ -1,0 +1,387 @@
+[
+    {
+      "case_type": "Civil - Property Dispute",
+      "graphs": {
+        "low_cost": {
+          "nodes": ["File Complaint", "Land Survey", "Community Mediation", "Court Hearing", "Judgment"],
+          "edges": [
+            {"from": "File Complaint", "to": "Land Survey", "time_days": 15, "cost_rupees": 4000, "risk_level": "medium"},
+            {"from": "Land Survey", "to": "Community Mediation", "time_days": 10, "cost_rupees": 3000, "risk_level": "high"},
+            {"from": "Community Mediation", "to": "Court Hearing", "time_days": 25, "cost_rupees": 6000, "risk_level": "medium"},
+            {"from": "Court Hearing", "to": "Judgment", "time_days": 60, "cost_rupees": 8000, "risk_level": "low"}
+          ]
+        },
+        "fast_resolution": {
+          "nodes": ["File Complaint", "Emergency Injunction", "Expedited Hearing", "Judgment"],
+          "edges": [
+            {"from": "File Complaint", "to": "Emergency Injunction", "time_days": 3, "cost_rupees": 15000, "risk_level": "high"},
+            {"from": "Emergency Injunction", "to": "Expedited Hearing", "time_days": 7, "cost_rupees": 20000, "risk_level": "medium"},
+            {"from": "Expedited Hearing", "to": "Judgment", "time_days": 10, "cost_rupees": 25000, "risk_level": "medium"}
+          ]
+        },
+        "high_efficiency": {
+          "nodes": ["File Complaint", "Preliminary Hearing", "Mediation", "Final Hearing", "Judgment"],
+          "edges": [
+            {"from": "File Complaint", "to": "Preliminary Hearing", "time_days": 10, "cost_rupees": 8000, "risk_level": "medium"},
+            {"from": "Preliminary Hearing", "to": "Mediation", "time_days": 7, "cost_rupees": 5000, "risk_level": "low"},
+            {"from": "Mediation", "to": "Final Hearing", "time_days": 14, "cost_rupees": 10000, "risk_level": "medium"},
+            {"from": "Final Hearing", "to": "Judgment", "time_days": 21, "cost_rupees": 12000, "risk_level": "low"}
+          ]
+        },
+        "low_risk": {
+          "nodes": ["File Complaint", "Legal Notice", "Surveyor Report", "Expert Evaluation", "Court Hearing", "Judgment"],
+          "edges": [
+            {"from": "File Complaint", "to": "Legal Notice", "time_days": 7, "cost_rupees": 5000, "risk_level": "low"},
+            {"from": "Legal Notice", "to": "Surveyor Report", "time_days": 14, "cost_rupees": 10000, "risk_level": "low"},
+            {"from": "Surveyor Report", "to": "Expert Evaluation", "time_days": 21, "cost_rupees": 15000, "risk_level": "low"},
+            {"from": "Expert Evaluation", "to": "Court Hearing", "time_days": 28, "cost_rupees": 20000, "risk_level": "low"},
+            {"from": "Court Hearing", "to": "Judgment", "time_days": 35, "cost_rupees": 25000, "risk_level": "low"}
+          ]
+        }
+      }
+    },
+    {
+      "case_type": "Criminal - Theft",
+      "graphs": {
+        "low_cost": {
+          "nodes": ["File FIR", "Police Investigation", "Public Defender Consultation", "Plea Bargaining", "Settlement"],
+          "edges": [
+            {"from": "File FIR", "to": "Police Investigation", "time_days": 7, "cost_rupees": 2000, "risk_level": "high"},
+            {"from": "Police Investigation", "to": "Public Defender Consultation", "time_days": 3, "cost_rupees": 0, "risk_level": "high"},
+            {"from": "Public Defender Consultation", "to": "Plea Bargaining", "time_days": 14, "cost_rupees": 5000, "risk_level": "medium"},
+            {"from": "Plea Bargaining", "to": "Settlement", "time_days": 7, "cost_rupees": 3000, "risk_level": "high"}
+          ]
+        },
+        "fast_resolution": {
+          "nodes": ["File FIR", "Expedited Investigation", "Fast-Track Trial", "Verdict"],
+          "edges": [
+            {"from": "File FIR", "to": "Expedited Investigation", "time_days": 3, "cost_rupees": 15000, "risk_level": "medium"},
+            {"from": "Expedited Investigation", "to": "Fast-Track Trial", "time_days": 7, "cost_rupees": 25000, "risk_level": "medium"},
+            {"from": "Fast-Track Trial", "to": "Verdict", "time_days": 10, "cost_rupees": 30000, "risk_level": "medium"}
+          ]
+        },
+        "high_efficiency": {
+          "nodes": ["File FIR", "Evidence Collection", "Defense Preparation", "Trial", "Verdict"],
+          "edges": [
+            {"from": "File FIR", "to": "Evidence Collection", "time_days": 5, "cost_rupees": 10000, "risk_level": "medium"},
+            {"from": "Evidence Collection", "to": "Defense Preparation", "time_days": 7, "cost_rupees": 15000, "risk_level": "low"},
+            {"from": "Defense Preparation", "to": "Trial", "time_days": 14, "cost_rupees": 20000, "risk_level": "medium"},
+            {"from": "Trial", "to": "Verdict", "time_days": 21, "cost_rupees": 25000, "risk_level": "low"}
+          ]
+        },
+        "low_risk": {
+          "nodes": ["File FIR", "Comprehensive Investigation", "Private Lawyer Consultation", "Evidence Review", "Trial", "Appeal"],
+          "edges": [
+            {"from": "File FIR", "to": "Comprehensive Investigation", "time_days": 14, "cost_rupees": 20000, "risk_level": "low"},
+            {"from": "Comprehensive Investigation", "to": "Private Lawyer Consultation", "time_days": 7, "cost_rupees": 15000, "risk_level": "low"},
+            {"from": "Private Lawyer Consultation", "to": "Evidence Review", "time_days": 14, "cost_rupees": 25000, "risk_level": "low"},
+            {"from": "Evidence Review", "to": "Trial", "time_days": 28, "cost_rupees": 35000, "risk_level": "low"},
+            {"from": "Trial", "to": "Appeal", "time_days": 35, "cost_rupees": 40000, "risk_level": "low"}
+          ]
+        }
+      }
+    },
+    {
+      "case_type": "Civil - Contract Breach",
+      "graphs": {
+        "low_cost": {
+          "nodes": ["Send Legal Notice", "Mediation", "Arbitration", "Settlement"],
+          "edges": [
+            {"from": "Send Legal Notice", "to": "Mediation", "time_days": 14, "cost_rupees": 5000, "risk_level": "high"},
+            {"from": "Mediation", "to": "Arbitration", "time_days": 30, "cost_rupees": 15000, "risk_level": "medium"},
+            {"from": "Arbitration", "to": "Settlement", "time_days": 45, "cost_rupees": 20000, "risk_level": "medium"}
+          ]
+        },
+        "fast_resolution": {
+          "nodes": ["Immediate Lawsuit", "Summary Judgment", "Enforcement"],
+          "edges": [
+            {"from": "Immediate Lawsuit", "to": "Summary Judgment", "time_days": 7, "cost_rupees": 30000, "risk_level": "high"},
+            {"from": "Summary Judgment", "to": "Enforcement", "time_days": 14, "cost_rupees": 25000, "risk_level": "medium"}
+          ]
+        },
+        "high_efficiency": {
+          "nodes": ["Legal Notice", "Evidence Preservation", "Negotiation", "Partial Settlement"],
+          "edges": [
+            {"from": "Legal Notice", "to": "Evidence Preservation", "time_days": 7, "cost_rupees": 10000, "risk_level": "medium"},
+            {"from": "Evidence Preservation", "to": "Negotiation", "time_days": 14, "cost_rupees": 15000, "risk_level": "low"},
+            {"from": "Negotiation", "to": "Partial Settlement", "time_days": 21, "cost_rupees": 20000, "risk_level": "medium"}
+          ]
+        },
+        "low_risk": {
+          "nodes": ["Legal Review", "Document Authentication", "Expert Evaluation", "Court Proceedings"],
+          "edges": [
+            {"from": "Legal Review", "to": "Document Authentication", "time_days": 21, "cost_rupees": 25000, "risk_level": "low"},
+            {"from": "Document Authentication", "to": "Expert Evaluation", "time_days": 28, "cost_rupees": 35000, "risk_level": "low"},
+            {"from": "Expert Evaluation", "to": "Court Proceedings", "time_days": 35, "cost_rupees": 45000, "risk_level": "low"}
+          ]
+        }
+      }
+    },
+    {
+        "case_type": "Criminal - Assault",
+        "graphs": {
+        "low_cost": {
+            "nodes": ["FIR Filing", "Police Statement", "Government Hospital Report", "Plea Bargain"],
+            "edges": [
+            {"from": "FIR Filing", "to": "Police Statement", "time_days": 2, "cost_rupees": 0, "risk_level": "high"},
+            {"from": "Police Statement", "to": "Government Hospital Report", "time_days": 3, "cost_rupees": 500, "risk_level": "medium"},
+            {"from": "Government Hospital Report", "to": "Plea Bargain", "time_days": 7, "cost_rupees": 3000, "risk_level": "high"}
+            ]
+        },
+        "fast_resolution": {
+            "nodes": ["Expedited FIR", "Medical Certification", "Fast-Track Hearing", "Settlement"],
+            "edges": [
+            {"from": "Expedited FIR", "to": "Medical Certification", "time_days": 1, "cost_rupees": 5000, "risk_level": "medium"},
+            {"from": "Medical Certification", "to": "Fast-Track Hearing", "time_days": 3, "cost_rupees": 15000, "risk_level": "medium"},
+            {"from": "Fast-Track Hearing", "to": "Settlement", "time_days": 5, "cost_rupees": 20000, "risk_level": "medium"}
+            ]
+        },
+        "high_efficiency": {
+            "nodes": ["FIR Filing", "Private Medical Exam", "Witness Depositions", "Trial", "Verdict"],
+            "edges": [
+            {"from": "FIR Filing", "to": "Private Medical Exam", "time_days": 2, "cost_rupees": 8000, "risk_level": "medium"},
+            {"from": "Private Medical Exam", "to": "Witness Depositions", "time_days": 5, "cost_rupees": 12000, "risk_level": "low"},
+            {"from": "Witness Depositions", "to": "Trial", "time_days": 7, "cost_rupees": 15000, "risk_level": "medium"},
+            {"from": "Trial", "to": "Verdict", "time_days": 10, "cost_rupees": 18000, "risk_level": "low"}
+            ]
+        },
+        "low_risk": {
+            "nodes": ["FIR Filing", "Forensic Evidence", "Expert Witness", "Comprehensive Trial", "Appeal Option"],
+            "edges": [
+            {"from": "FIR Filing", "to": "Forensic Evidence", "time_days": 7, "cost_rupees": 25000, "risk_level": "low"},
+            {"from": "Forensic Evidence", "to": "Expert Witness", "time_days": 14, "cost_rupees": 35000, "risk_level": "low"},
+            {"from": "Expert Witness", "to": "Comprehensive Trial", "time_days": 21, "cost_rupees": 45000, "risk_level": "low"},
+            {"from": "Comprehensive Trial", "to": "Appeal Option", "time_days": 30, "cost_rupees": 50000, "risk_level": "low"}
+            ]
+        }
+        }
+    },
+    {
+        "case_type": "Civil - Divorce Settlement",
+        "graphs": {
+        "low_cost": {
+            "nodes": ["Mutual Consent Filing", "Mediation Session", "Asset Division Agreement", "Final Decree"],
+            "edges": [
+            {"from": "Mutual Consent Filing", "to": "Mediation Session", "time_days": 15, "cost_rupees": 7000, "risk_level": "medium"},
+            {"from": "Mediation Session", "to": "Asset Division Agreement", "time_days": 30, "cost_rupees": 10000, "risk_level": "high"},
+            {"from": "Asset Division Agreement", "to": "Final Decree", "time_days": 45, "cost_rupees": 5000, "risk_level": "medium"}
+            ]
+        },
+        "fast_resolution": {
+            "nodes": ["Urgent Petition", "Expedited Hearing", "Interim Order", "Final Settlement"],
+            "edges": [
+            {"from": "Urgent Petition", "to": "Expedited Hearing", "time_days": 3, "cost_rupees": 25000, "risk_level": "high"},
+            {"from": "Expedited Hearing", "to": "Interim Order", "time_days": 7, "cost_rupees": 30000, "risk_level": "medium"},
+            {"from": "Interim Order", "to": "Final Settlement", "time_days": 10, "cost_rupees": 35000, "risk_level": "medium"}
+            ]
+        },
+        "high_efficiency": {
+            "nodes": ["Initial Petition", "Financial Disclosure", "Child Custody Mediation", "Final Hearing"],
+            "edges": [
+            {"from": "Initial Petition", "to": "Financial Disclosure", "time_days": 7, "cost_rupees": 15000, "risk_level": "medium"},
+            {"from": "Financial Disclosure", "to": "Child Custody Mediation", "time_days": 14, "cost_rupees": 20000, "risk_level": "low"},
+            {"from": "Child Custody Mediation", "to": "Final Hearing", "time_days": 21, "cost_rupees": 25000, "risk_level": "medium"}
+            ]
+        },
+        "low_risk": {
+            "nodes": ["Legal Separation Agreement", "Asset Valuation", "Expert Review", "Court Approval", "Appeal Window"],
+            "edges": [
+            {"from": "Legal Separation Agreement", "to": "Asset Valuation", "time_days": 14, "cost_rupees": 30000, "risk_level": "low"},
+            {"from": "Asset Valuation", "to": "Expert Review", "time_days": 21, "cost_rupees": 40000, "risk_level": "low"},
+            {"from": "Expert Review", "to": "Court Approval", "time_days": 28, "cost_rupees": 50000, "risk_level": "low"},
+            {"from": "Court Approval", "to": "Appeal Window", "time_days": 35, "cost_rupees": 10000, "risk_level": "low"}
+            ]
+        }
+        }
+    },
+    {
+        "case_type": "Criminal - Cybercrime",
+        "graphs": {
+        "low_cost": {
+            "nodes": ["FIR Cyber Cell", "Basic Digital Evidence", "Public Prosecutor", "Plea Deal"],
+            "edges": [
+            {"from": "FIR Cyber Cell", "to": "Basic Digital Evidence", "time_days": 7, "cost_rupees": 5000, "risk_level": "high"},
+            {"from": "Basic Digital Evidence", "to": "Public Prosecutor", "time_days": 14, "cost_rupees": 10000, "risk_level": "medium"},
+            {"from": "Public Prosecutor", "to": "Plea Deal", "time_days": 21, "cost_rupees": 15000, "risk_level": "high"}
+            ]
+        },
+        "fast_resolution": {
+            "nodes": ["Emergency Complaint", "Digital Forensic Team", "Fast-Track Court", "Verdict"],
+            "edges": [
+            {"from": "Emergency Complaint", "to": "Digital Forensic Team", "time_days": 1, "cost_rupees": 30000, "risk_level": "medium"},
+            {"from": "Digital Forensic Team", "to": "Fast-Track Court", "time_days": 3, "cost_rupees": 50000, "risk_level": "medium"},
+            {"from": "Fast-Track Court", "to": "Verdict", "time_days": 7, "cost_rupees": 70000, "risk_level": "medium"}
+            ]
+        },
+        "high_efficiency": {
+            "nodes": ["Cyber Complaint", "Data Preservation", "Expert Analysis", "Settlement Conference"],
+            "edges": [
+            {"from": "Cyber Complaint", "to": "Data Preservation", "time_days": 2, "cost_rupees": 20000, "risk_level": "medium"},
+            {"from": "Data Preservation", "to": "Expert Analysis", "time_days": 5, "cost_rupees": 35000, "risk_level": "low"},
+            {"from": "Expert Analysis", "to": "Settlement Conference", "time_days": 7, "cost_rupees": 45000, "risk_level": "medium"}
+            ]
+        },
+        "low_risk": {
+            "nodes": ["Cyber FIR", "Comprehensive Forensics", "International Liaison", "Trial", "Appeal Process"],
+            "edges": [
+            {"from": "Cyber FIR", "to": "Comprehensive Forensics", "time_days": 14, "cost_rupees": 100000, "risk_level": "low"},
+            {"from": "Comprehensive Forensics", "to": "International Liaison", "time_days": 21, "cost_rupees": 150000, "risk_level": "low"},
+            {"from": "International Liaison", "to": "Trial", "time_days": 30, "cost_rupees": 200000, "risk_level": "low"},
+            {"from": "Trial", "to": "Appeal Process", "time_days": 45, "cost_rupees": 50000, "risk_level": "low"}
+            ]
+        }
+        }
+    },
+    {
+        "case_type": "Civil - Consumer Complaint",
+        "graphs": {
+        "low_cost": {
+            "nodes": ["File District Forum", "Product Inspection", "Mediation", "Settlement"],
+            "edges": [
+            {"from": "File District Forum", "to": "Product Inspection", "time_days": 14, "cost_rupees": 2000, "risk_level": "medium"},
+            {"from": "Product Inspection", "to": "Mediation", "time_days": 21, "cost_rupees": 5000, "risk_level": "high"},
+            {"from": "Mediation", "to": "Settlement", "time_days": 30, "cost_rupees": 3000, "risk_level": "medium"}
+            ]
+        },
+        "fast_resolution": {
+            "nodes": ["Emergency Filing", "Expedited Testing", "Fast-Track Hearing", "Order"],
+            "edges": [
+            {"from": "Emergency Filing", "to": "Expedited Testing", "time_days": 3, "cost_rupees": 15000, "risk_level": "medium"},
+            {"from": "Expedited Testing", "to": "Fast-Track Hearing", "time_days": 7, "cost_rupees": 25000, "risk_level": "medium"},
+            {"from": "Fast-Track Hearing", "to": "Order", "time_days": 5, "cost_rupees": 20000, "risk_level": "low"}
+            ]
+        },
+        "high_efficiency": {
+            "nodes": ["Complaint Drafting", "Evidence Collection", "Expert Testimony", "Final Hearing"],
+            "edges": [
+            {"from": "Complaint Drafting", "to": "Evidence Collection", "time_days": 7, "cost_rupees": 10000, "risk_level": "medium"},
+            {"from": "Evidence Collection", "to": "Expert Testimony", "time_days": 14, "cost_rupees": 15000, "risk_level": "low"},
+            {"from": "Expert Testimony", "to": "Final Hearing", "time_days": 21, "cost_rupees": 20000, "risk_level": "medium"}
+            ]
+        },
+        "low_risk": {
+            "nodes": ["Legal Notice", "Laboratory Analysis", "Document Authentication", "Appellate Process"],
+            "edges": [
+            {"from": "Legal Notice", "to": "Laboratory Analysis", "time_days": 21, "cost_rupees": 25000, "risk_level": "low"},
+            {"from": "Laboratory Analysis", "to": "Document Authentication", "time_days": 28, "cost_rupees": 30000, "risk_level": "low"},
+            {"from": "Document Authentication", "to": "Appellate Process", "time_days": 35, "cost_rupees": 40000, "risk_level": "low"}
+            ]
+        }
+        }
+    },
+    {
+        "case_type": "Criminal - Drug Possession",
+        "graphs": {
+        "low_cost": {
+            "nodes": ["FIR Narcotics", "Mandatory Testing", "Public Defender", "Plea Agreement"],
+            "edges": [
+            {"from": "FIR Narcotics", "to": "Mandatory Testing", "time_days": 7, "cost_rupees": 0, "risk_level": "high"},
+            {"from": "Mandatory Testing", "to": "Public Defender", "time_days": 14, "cost_rupees": 5000, "risk_level": "high"},
+            {"from": "Public Defender", "to": "Plea Agreement", "time_days": 21, "cost_rupees": 10000, "risk_level": "medium"}
+            ]
+        },
+        "fast_resolution": {
+            "nodes": ["NDPS Act Charge", "Expedited Forensic", "Special Court", "Verdict"],
+            "edges": [
+            {"from": "NDPS Act Charge", "to": "Expedited Forensic", "time_days": 2, "cost_rupees": 30000, "risk_level": "medium"},
+            {"from": "Expedited Forensic", "to": "Special Court", "time_days": 5, "cost_rupees": 50000, "risk_level": "medium"},
+            {"from": "Special Court", "to": "Verdict", "time_days": 7, "cost_rupees": 70000, "risk_level": "medium"}
+            ]
+        },
+        "high_efficiency": {
+            "nodes": ["Bail Application", "Evidence Challenge", "Witness Protection", "Trial"],
+            "edges": [
+            {"from": "Bail Application", "to": "Evidence Challenge", "time_days": 7, "cost_rupees": 150000, "risk_level": "medium"},
+            {"from": "Evidence Challenge", "to": "Witness Protection", "time_days": 14, "cost_rupees": 200000, "risk_level": "low"},
+            {"from": "Witness Protection", "to": "Trial", "time_days": 21, "cost_rupees": 250000, "risk_level": "medium"}
+            ]
+        },
+        "low_risk": {
+            "nodes": ["Legal Consultation", "Chain of Custody", "Expert Toxicologist", "High Court Appeal"],
+            "edges": [
+            {"from": "Legal Consultation", "to": "Chain of Custody", "time_days": 14, "cost_rupees": 100000, "risk_level": "low"},
+            {"from": "Chain of Custody", "to": "Expert Toxicologist", "time_days": 21, "cost_rupees": 150000, "risk_level": "low"},
+            {"from": "Expert Toxicologist", "to": "High Court Appeal", "time_days": 30, "cost_rupees": 200000, "risk_level": "low"}
+            ]
+        }
+        }
+    },
+    {
+        "case_type": "Civil - Employment Dispute",
+        "graphs": {
+        "low_cost": {
+            "nodes": ["Labor Commission Filing", "Conciliation", "Arbitration", "Settlement"],
+            "edges": [
+            {"from": "Labor Commission Filing", "to": "Conciliation", "time_days": 30, "cost_rupees": 5000, "risk_level": "high"},
+            {"from": "Conciliation", "to": "Arbitration", "time_days": 45, "cost_rupees": 10000, "risk_level": "medium"},
+            {"from": "Arbitration", "to": "Settlement", "time_days": 60, "cost_rupees": 15000, "risk_level": "medium"}
+            ]
+        },
+        "fast_resolution": {
+            "nodes": ["Urgent Petition", "Interim Relief", "Expedited Hearing", "Order"],
+            "edges": [
+            {"from": "Urgent Petition", "to": "Interim Relief", "time_days": 3, "cost_rupees": 25000, "risk_level": "high"},
+            {"from": "Interim Relief", "to": "Expedited Hearing", "time_days": 7, "cost_rupees": 35000, "risk_level": "medium"},
+            {"from": "Expedited Hearing", "to": "Order", "time_days": 10, "cost_rupees": 40000, "risk_level": "low"}
+            ]
+        },
+        "high_efficiency": {
+            "nodes": ["Notice Period", "Evidence Preservation", "Mediation", "Final Award"],
+            "edges": [
+            {"from": "Notice Period", "to": "Evidence Preservation", "time_days": 7, "cost_rupees": 15000, "risk_level": "medium"},
+            {"from": "Evidence Preservation", "to": "Mediation", "time_days": 14, "cost_rupees": 20000, "risk_level": "low"},
+            {"from": "Mediation", "to": "Final Award", "time_days": 21, "cost_rupees": 25000, "risk_level": "medium"}
+            ]
+        },
+        "low_risk": {
+            "nodes": ["Legal Review", "Document Authentication", "Expert Evaluation", "Appellate Tribunal"],
+            "edges": [
+            {"from": "Legal Review", "to": "Document Authentication", "time_days": 14, "cost_rupees": 30000, "risk_level": "low"},
+            {"from": "Document Authentication", "to": "Expert Evaluation", "time_days": 21, "cost_rupees": 40000, "risk_level": "low"},
+            {"from": "Expert Evaluation", "to": "Appellate Tribunal", "time_days": 28, "cost_rupees": 50000, "risk_level": "low"}
+            ]
+        }
+        }
+    },
+    {
+    "case_type": "Criminal - Domestic Violence",
+    "graphs": {
+        "low_cost": {
+            "nodes": ["File Domestic Incident Report", "Protection Officer Meeting", "Free Legal Aid Consultation", "Magistrate Hearing", "Interim Order"],
+            "edges": [
+                {"from": "File Domestic Incident Report", "to": "Protection Officer Meeting", "time_days": 7, "cost_rupees": 0, "risk_level": "high"},
+                {"from": "Protection Officer Meeting", "to": "Free Legal Aid Consultation", "time_days": 14, "cost_rupees": 0, "risk_level": "medium"},
+                {"from": "Free Legal Aid Consultation", "to": "Magistrate Hearing", "time_days": 30, "cost_rupees": 2000, "risk_level": "medium"},
+                {"from": "Magistrate Hearing", "to": "Interim Order", "time_days": 45, "cost_rupees": 5000, "risk_level": "low"}
+            ]
+        },
+        "fast_resolution": {
+            "nodes": ["Emergency FIR Filing", "Ex Parte Interim Order", "Fast-Track Evidence Collection", "Final Protection Order"],
+            "edges": [
+                {"from": "Emergency FIR Filing", "to": "Ex Parte Interim Order", "time_days": 1, "cost_rupees": 10000, "risk_level": "medium"},
+                {"from": "Ex Parte Interim Order", "to": "Fast-Track Evidence Collection", "time_days": 3, "cost_rupees": 25000, "risk_level": "medium"},
+                {"from": "Fast-Track Evidence Collection", "to": "Final Protection Order", "time_days": 7, "cost_rupees": 40000, "risk_level": "low"}
+            ]
+        },
+        "high_efficiency": {
+            "nodes": ["Police Complaint + Medical Exam", "Counseling Session", "Evidence Documentation", "Final Hearing", "Compensation Order"],
+            "edges": [
+                {"from": "Police Complaint + Medical Exam", "to": "Counseling Session", "time_days": 3, "cost_rupees": 5000, "risk_level": "medium"},
+                {"from": "Counseling Session", "to": "Evidence Documentation", "time_days": 7, "cost_rupees": 10000, "risk_level": "low"},
+                {"from": "Evidence Documentation", "to": "Final Hearing", "time_days": 14, "cost_rupees": 15000, "risk_level": "medium"},
+                {"from": "Final Hearing", "to": "Compensation Order", "time_days": 21, "cost_rupees": 20000, "risk_level": "low"}
+            ]
+        },
+        "low_risk": {
+            "nodes": ["Legal Notice Drafting", "Forensic Medical Report", "Safe House Arrangement", "Expert Witness Testimony", "High Court Review", "Appeal Process"],
+            "edges": [
+                {"from": "Legal Notice Drafting", "to": "Forensic Medical Report", "time_days": 7, "cost_rupees": 15000, "risk_level": "low"},
+                {"from": "Forensic Medical Report", "to": "Safe House Arrangement", "time_days": 3, "cost_rupees": 20000, "risk_level": "low"},
+                {"from": "Safe House Arrangement", "to": "Expert Witness Testimony", "time_days": 14, "cost_rupees": 30000, "risk_level": "low"},
+                {"from": "Expert Witness Testimony", "to": "High Court Review", "time_days": 21, "cost_rupees": 50000, "risk_level": "low"},
+                {"from": "High Court Review", "to": "Appeal Process", "time_days": 30, "cost_rupees": 25000, "risk_level": "low"}
+            ]
+            }
+        }
+    }
+]
