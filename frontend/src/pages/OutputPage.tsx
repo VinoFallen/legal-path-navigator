@@ -7,7 +7,6 @@ import { MermaidDiagram } from '@lightenna/react-mermaid-diagram';
 
 type PathwayOption = 'cost' | 'efficiency' | 'risk' | 'time';
 
-// Map UI options → localStorage keys
 const storageKeyMap: Record<PathwayOption, string> = {
   cost: 'graph_low_cost',
   efficiency: 'graph_high_efficiency',
@@ -23,13 +22,16 @@ export default function OutputPage(): JSX.Element {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [inputText, setInputText] = useState('');
   const [caseType, setCaseType] = useState('');
-  const [graphData, setGraphData] = useState<any>(null); // updated shape
+  const [summary, setSummary] = useState('');
+  const [graphData, setGraphData] = useState<any>(null);
 
   useEffect(() => {
     const inp = state?.input || localStorage.getItem('input') || '';
     const ct = localStorage.getItem('case_type') || '';
+    const sm = localStorage.getItem('summary') || '';
     setInputText(inp);
     setCaseType(ct);
+    setSummary(sm);
 
     const raw = localStorage.getItem(storageKeyMap[selectedOption]);
     setGraphData(raw ? JSON.parse(raw) : null);
@@ -52,13 +54,11 @@ export default function OutputPage(): JSX.Element {
     );
   }
 
-  // Fixes: Convert updated graph format to Mermaid DSL
   const buildDiagram = () => {
     if (!graphData || !graphData.nodes || !graphData.edges) return 'flowchart TD; A[No data]';
     const lines = ['flowchart TD'];
 
     const nodeIds: Record<string, string> = {};
-
     graphData.nodes.forEach((label, index) => {
       const id = `N${index}`;
       nodeIds[label] = id;
@@ -122,14 +122,18 @@ export default function OutputPage(): JSX.Element {
             <h4 className="text-xs uppercase text-gray-500 mb-1">Case Type</h4>
             <p className="text-sm text-gray-700 mb-4">{caseType}</p>
             <h4 className="text-xs uppercase text-gray-500 mb-1">Input Summary</h4>
-            <pre className="whitespace-pre-wrap text-gray-700 text-sm">{inputText}</pre>
+            <pre className="whitespace-pre-wrap text-gray-700 text-sm mb-4">{inputText}</pre>
+            <h4 className="text-xs uppercase text-gray-500 mb-1">Generated Case Summary</h4>
+            <p className="text-sm text-gray-700">{summary}</p>
           </div>
 
           {/* Mermaid Diagram */}
           <div className="flex items-center justify-center mb-6">
+          <div className="flex items-center justify-center mb-6">
             <div className="bg-white p-4 border border-gray-200 rounded-lg w-full overflow-auto">
               <MermaidDiagram>{diagram}</MermaidDiagram>
             </div>
+          </div>
           </div>
 
           {/* Buttons */}

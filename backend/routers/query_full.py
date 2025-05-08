@@ -29,7 +29,8 @@ def query_full(input: ComplaintInput):
         if isinstance(extracted_data, list) and len(extracted_data) > 0:
             processed_data = extracted_data[0]
             case_type = processed_data.get("case_type", "")
-            keywords = [] # The current prompt doesn't explicitly extract keywords
+            summary = processed_data.get("summary", "")
+            keywords = []  # The current prompt doesn't explicitly extract keywords
             graphs = processed_data.get("graphs", {})
         else:
             return {"error": "Unexpected format in Gemini response", "raw_response": extracted_info_raw}
@@ -51,6 +52,7 @@ def query_full(input: ComplaintInput):
         "complaint_text": complaint,
         "keywords": keywords,
         "case_type": case_type,
+        "summary": summary,
         "timestamp": datetime.utcnow(),
         "gemini_response": graphs
     })
@@ -59,7 +61,8 @@ def query_full(input: ComplaintInput):
     return {
         "parsed_data": {
             "keywords": keywords,
-            "case_type": case_type
+            "case_type": case_type,
+            "summary": summary
         },
         "graph_data": {
             "case_type": case_type,

@@ -1,6 +1,11 @@
+# File: backend/services/gemini_api.py
 import requests
 
-GEMINI_API_KEY = "AIzaSyCXSYXAspFfENOilDo7hqL4yD7QPPG8tQM"
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
 
 headers = {
@@ -8,12 +13,14 @@ headers = {
 }
 
 def extract_legal_info(user_complaint):
-    prompt = f"""You are an expert legal assistant tasked with outlining potential procedural paths for resolving legal cases.
+    prompt = f"""You are an expert legal assistant tasked with outlining potential procedural paths for resolving legal cases (Indian System).
 
 A user has submitted the following legal complaint:
 \"\"\"{user_complaint}\"\"\"
 
 From the complaint, infer the legal case type and then identify and describe the sequential steps involved in four distinct strategies: "low_cost", "fast_resolution", "high_efficiency", and "low_risk". Represent each strategy as a graph where the steps are nodes and the transitions between steps are edges. Each edge should include an estimated time in days, the associated cost in Indian Rupees (₹), and a qualitative risk level (e.g., "low", "medium", "high").
+
+Also generate a brief summary of the case type and the strategies. The summary should be concise and informative, providing a clear understanding of the case, the legal context and the risks involved in the case.
 
 The final output MUST be a JSON object with the following structure:
 
@@ -21,6 +28,7 @@ The final output MUST be a JSON object with the following structure:
 [
   {{
     "case_type": "<INSERT_CASE_TYPE>",
+    "summary": "<INSERT_SUMMARY>",
     "graphs": {{
       "low_cost": {{
         "nodes": ["<STEP_1>", "<STEP_2>", ...],

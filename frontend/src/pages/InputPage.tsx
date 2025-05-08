@@ -4,6 +4,8 @@ import Layout from '../components/Layout';
 import { FileText, Upload, ArrowRight, Loader2 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import api from '../api/api';
+import * as pdfjsLib from 'pdfjs-dist';
+import mammoth from 'mammoth';
 
 export default function InputPage() {
   const [input, setInput] = useState('');
@@ -14,30 +16,30 @@ export default function InputPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
-  
+
     setLoading(true);
     try {
-      const response = await api.post("/query/full", { complaint: input });
-      const { case_type } = response.data.parsed_data;
-      const { graphs } = response.data.graph_data;
-  
-      // Save to localStorage
+      const response = await api.post('/query/full', { complaint: input });
+
+      const case_type = response.data.parsed_data.case_type;
+      const summary = response.data.parsed_data.summary;
+      const graphs = response.data.graph_data.graphs;
+
       localStorage.setItem('case_type', case_type);
       localStorage.setItem('input', input);
-  
+      localStorage.setItem('summary', summary);
+
       const strategyNames = Object.keys(graphs);
       localStorage.setItem('strategy_names', JSON.stringify(strategyNames));
-  
-      // Save each graph under its strategy key
+
       for (const strategy of strategyNames) {
         localStorage.setItem(`graph_${strategy}`, JSON.stringify(graphs[strategy]));
       }
-  
-      // Optionally set a default strategy (first one)
+
       if (strategyNames.length > 0) {
         localStorage.setItem('graph_default', JSON.stringify(graphs[strategyNames[0]]));
       }
-  
+
       navigate('/output');
     } catch (error) {
       console.error('Error processing the complaint:', error);
@@ -45,20 +47,48 @@ export default function InputPage() {
       setLoading(false);
     }
   };
-  
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setFileName(file.name);
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (typeof reader.result === 'string') {
-        setInput(reader.result);
-      }
-    };
-    reader.readAsText(file);
+    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+
+    if (fileExtension === 'txt') {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          setInput(reader.result);
+        }
+      };
+      reader.readAsText(file);
+    } else if (fileExtension === 'pdf') {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const typedarray = new Uint8Array(reader.result as ArrayBuffer);
+        const pdf = await pdfjsLib.getDocument({ data: typedarray }).promise;
+        let text = '';
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          const strings = content.items.map((item: any) => item.str);
+          text += strings.join(' ') + '\n';
+        }
+        setInput(text);
+      };
+      reader.readAsArrayBuffer(file);
+    } else if (fileExtension === 'docx') {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        const result = await mammoth.extractRawText({ arrayBuffer });
+        setInput(result.value);
+      };
+      reader.readAsArrayBuffer(file);
+    } else {
+      alert('Unsupported file type. Please upload a .txt, .pdf, or .docx file.');
+    }
   };
 
   return (
@@ -67,7 +97,9 @@ export default function InputPage() {
         <div className="bg-card shadow-elegant rounded-xl p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-serif font-bold text-foreground">Legal Path Navigator</h1>
-            <p className="text-muted-foreground mt-2">Enter your case details to receive expert guidance on the optimal legal pathway.</p>
+            <p className="text-muted-foreground mt-2">
+              Enter your case details to receive expert guidance on the optimal legal pathway.
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -92,7 +124,7 @@ export default function InputPage() {
                 <div className="flex-grow">
                   <input
                     type="file"
-                    accept=".txt,.json,.docx,.pdf"
+                    accept=".txt,.pdf,.docx"
                     onChange={handleFileUpload}
                     className="w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 cursor-pointer"
                   />
@@ -100,7 +132,7 @@ export default function InputPage() {
               </label>
               {fileName && (
                 <div className="mt-3 text-sm text-muted-foreground flex items-center gap-2">
-                  <span>Loaded:</span> 
+                  <span>Loaded:</span>
                   <span className="font-medium text-primary">{fileName}</span>
                 </div>
               )}
