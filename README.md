@@ -1,2 +1,2 @@
-# legal-path-navigator
-Python (FastAPI) + React Project, leveraging Gemini API  
+# Legal Path Navigator
+Python (FastAPI) + React (TS) Project, leveraging Gemini API  
